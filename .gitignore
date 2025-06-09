@@ -1,0 +1,8 @@
+.env
+*.db
+
+
+/logs
+/tmp
+/secrets
+/views/node_modules
