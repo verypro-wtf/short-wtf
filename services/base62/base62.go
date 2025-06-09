@@ -1,4 +1,4 @@
-package base57
+package base62
 
 import (
 	"crypto/rand"
@@ -6,7 +6,7 @@ import (
 	"math/big"
 )
 
-const charset = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789"
+const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 
 var (
 	encodeMap = []rune(charset)
@@ -37,6 +37,9 @@ func Encode(input []byte) string {
 }
 
 func Decode(encoded string) (string, error) {
+	if len(encoded) == 0 {
+		return "", errors.New("input cannot be empty")
+	}
 	num := big.NewInt(0)
 
 	for _, c := range encoded {
