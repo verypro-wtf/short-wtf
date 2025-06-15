@@ -127,7 +127,8 @@ func New(serviceName string) zerolog.Logger {
 	base := filepath.Base(globalConfig.Log_File_Path)
 	extRemovedBase := base[:len(base)-len(ext)]
 
-	logPath := filepath.Join(dir, extRemovedBase+"_"+serviceName+ext)
+	logPath := filepath.Join(dir, serviceName + "." + extRemovedBase + ext)
+
 
 	return createLogger(serviceName, logPath)
 }
